@@ -72,7 +72,16 @@ const Navbar = ({ activeSection }: NavbarProps) => {
         className="fixed top-4 left-0 right-0 z-50"
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-background/80 backdrop-blur-md rounded-2xl shadow-lg border border-border/50 p-4">
+          <div
+            className="bg-background/80 backdrop-blur-md rounded-2xl shadow-lg border border-border/50 p-4 relative overflow-hidden"
+            style={{
+              boxShadow: `
+                  0 0 2px rgba(255, 255, 255, 0.1),
+                  0 0 6px rgba(255, 50, 50, 0.1),
+                  0 0 12px rgba(255, 80, 80, 0.05)
+                `,
+            }}
+          >
             <div className="flex items-center justify-between">
               {/* Logo */}
               <motion.div
