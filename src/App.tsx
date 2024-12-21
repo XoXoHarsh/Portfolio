@@ -8,6 +8,7 @@ import ProfilesSection from "./components/sections/ProfilesSection";
 import ProjectsSection from "./components/sections/ProjectsSection";
 import ContactSection from "./components/sections/ContactSection";
 import useActiveSection from "./hooks/useActiveSection";
+import { Toaster } from "./components/ui/toaster";
 import "./app.css";
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar activeSection={activeSection} />
+      <Toaster />
       <main className="pt-16">
         <HeroSection />
         <AboutSection />
