@@ -2,85 +2,8 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ExternalLink } from "lucide-react";
-
-const profiles = [
-  {
-    platform: "LeetCode",
-    username: "XoXoHarsh",
-    stats: [
-      { label: "Max Rating", value: "1,962" },
-      { label: "Problems Solved", value: "692" },
-      { label: "Level", value: "Knight" },
-      { label: "Contests", value: "35+" },
-    ],
-    link: "https://leetcode.com/XoXoHarsh/",
-    gradient: "from-yellow-500 to-yellow-600",
-    bgGradient: "from-yellow-500/20 to-yellow-600/20",
-  },
-  {
-    platform: "GitHub",
-    username: "HarshSharma20503",
-    stats: [
-      { label: "Contributions", value: "1,300+" },
-      { label: "Repositories", value: "51" },
-      { label: "Profile Views", value: "3,500+" },
-      { label: "Followers", value: "29" },
-    ],
-    link: "https://github.com/HarshSharma20503",
-    gradient: "from-purple-500 to-purple-600",
-    bgGradient: "from-purple-500/20 to-purple-600/20",
-  },
-  {
-    platform: "CodeForces",
-    username: "XoXoHarsh",
-    stats: [
-      { label: "Max Rating", value: "1,556" },
-      { label: "Max Rank", value: "Specialist" },
-      { label: "Problems Solved", value: "550+" },
-      { label: "Contests", value: "90+" },
-    ],
-    link: "https://codeforces.com/profile/XoXoHarsh",
-    gradient: "from-red-500 to-red-600",
-    bgGradient: "from-red-500/20 to-red-600/20",
-  },
-  {
-    platform: "GeeksforGeeks",
-    username: "harshsharma20503",
-    stats: [
-      { label: "Problems Solved", value: "250+" },
-      { label: "Streak", value: "32" },
-      { label: "Coding Score", value: "768" },
-    ],
-    link: "https://auth.geeksforgeeks.org/user/harshsharma20503",
-    gradient: "from-green-500 to-green-600",
-    bgGradient: "from-green-500/20 to-green-600/20",
-  },
-  {
-    platform: "HackerRank",
-    username: "harshsharma20503",
-    stats: [
-      { label: "Problem Solving", value: "6 ⭐" },
-      { label: "C++", value: "5 ⭐" },
-      { label: "Badges", value: "6" },
-      { label: "Certificates", value: "2" },
-    ],
-    link: "https://www.hackerrank.com/harshsharma20503",
-    gradient: "from-emerald-500 to-emerald-600",
-    bgGradient: "from-emerald-500/20 to-emerald-600/20",
-  },
-  {
-    platform: "CodeChef",
-    username: "xoxoharsh",
-    stats: [
-      { label: "Max Rating", value: "1872" },
-      { label: "Level", value: "4 ⭐" },
-      { label: "Best Contest Rank", value: "91" },
-    ],
-    link: "https://www.codechef.com/users/xoxoharsh",
-    gradient: "from-orange-500 to-orange-600",
-    bgGradient: "from-orange-500/20 to-orange-600/20",
-  },
-];
+import Header from "../ui/Header";
+import { profiles } from "@/config/profile";
 
 interface Profile {
   platform: string;
@@ -146,14 +69,21 @@ const ProfilesSection = () => {
   return (
     <section id="profiles" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+        {/* <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-500 mb-4">
             Coding Profiles
           </h2>
           <p className="text-muted-foreground text-lg">
             Check out my presence across different platforms
           </p>
-        </div>
+        </div> */}
+        <Header
+          title="Coding Profiles"
+          subtitle="Check out my presence across different platforms"
+          gradient={true}
+          align="center"
+          className="mb-2"
+        />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 max-w-6xl mx-auto">
           {profiles.map((profile) => (

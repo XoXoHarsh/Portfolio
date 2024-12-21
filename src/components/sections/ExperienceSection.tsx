@@ -3,108 +3,39 @@ import Header from "@/components/ui/Header";
 import { Card } from "@/components/ui/card";
 import React from "react";
 import { useScroll, useTransform } from "framer-motion";
+import { experiences } from "@/config/experience";
 
-const experienceData = [
-  {
-    title: "2024",
-    content: (
-      <Card className="p-8 bg-background/50 backdrop-blur-sm border-muted hover:bg-accent/10 transition-colors">
-        <h3 className="text-2xl font-bold mb-2">Technology Intern</h3>
-        <p className="text-lg text-muted-foreground mb-4">
-          Fidelity International • June - July
+const experienceData = experiences.map((experience) => ({
+  title: experience.date,
+  content: (
+    <Card className="p-3 md:p-8 bg-background/50 backdrop-blur-sm border-muted hover:bg-accent/10 transition-colors">
+      <h3 className="text-2xl font-bold mb-2">{experience.title}</h3>
+      <p className="text-lg text-muted-foreground mb-4">
+        {experience.company} • {experience.duration}
+      </p>
+      <ul className="list-disc pl-6 space-y-3 text-base mb-6">
+        {experience.responsibilities.map((resp) => (
+          <li key={resp}>{resp}</li>
+        ))}
+      </ul>
+      <div className="border-t border-muted pt-4">
+        <p className="font-medium text-lg mb-2">
+          {experience.category == "tech" ? "Tech Stack" : "Concepts"}
         </p>
-        <ul className="list-disc pl-6 space-y-3 text-base mb-6">
-          <li>
-            Contributed to developing a Proof of Concept for a custodial crypto
-            wallet
-          </li>
-          <li>
-            Enhanced security features and implemented robust access control
-            measures
-          </li>
-        </ul>
-        <div className="border-t border-muted pt-4">
-          <p className="font-medium text-lg mb-2">Tech Stack</p>
-          <div className="flex flex-wrap gap-2">
-            {["MERN Stack", "Web3.js", "Chrome Extension v3"].map((tech) => (
-              <span
-                key={tech}
-                className="px-3 py-1 bg-primary/10 rounded-full text-sm"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
+        <div className="flex flex-wrap gap-2">
+          {experience.skills.map((skill) => (
+            <span
+              key={skill}
+              className="px-3 py-1 bg-primary/10 rounded-full text-sm"
+            >
+              {skill}
+            </span>
+          ))}
         </div>
-      </Card>
-    ),
-  },
-  {
-    title: "2024",
-    content: (
-      <Card className="p-8 bg-background/50 backdrop-blur-sm border-muted hover:bg-accent/10 transition-colors">
-        <h3 className="text-2xl font-bold mb-2">Website Developer</h3>
-        <p className="text-lg text-muted-foreground mb-4">
-          Freelancing • January
-        </p>
-        <ul className="list-disc pl-6 space-y-3 text-base mb-6">
-          <li>
-            Developed and deployed a responsive website for University
-            Literature Fest 2024
-          </li>
-          <li>Implemented design based on client's Figma specifications</li>
-          <li>Achieved 10,000+ registrations and 5,000 peak daily visitors</li>
-        </ul>
-        <div className="border-t border-muted pt-4">
-          <p className="font-medium text-lg mb-2">Tech Stack</p>
-          <div className="flex flex-wrap gap-2">
-            {["Firebase", "React", "Google Sheets API", "Bootstrap"].map(
-              (tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1 bg-primary/10 rounded-full text-sm"
-                >
-                  {tech}
-                </span>
-              )
-            )}
-          </div>
-        </div>
-      </Card>
-    ),
-  },
-  {
-    title: "2023",
-    content: (
-      <Card className="p-8 bg-background/50 backdrop-blur-sm border-muted hover:bg-accent/10 transition-colors">
-        <h3 className="text-2xl font-bold mb-2">Teaching Assistant</h3>
-        <p className="text-lg text-muted-foreground mb-4">
-          Ask Senior • September - October
-        </p>
-        <ul className="list-disc pl-6 space-y-3 text-base mb-6">
-          <li>Provided guidance and resolved DSA/CP-related doubts</li>
-          <li>Served as a mentor fostering collaborative learning</li>
-          <li>
-            Provided feedback to improve course and enhance learning outcomes
-          </li>
-        </ul>
-        <div className="border-t border-muted pt-4">
-          <p className="font-medium text-lg mb-2">Concepts</p>
-          <div className="flex flex-wrap gap-2">
-            {["DSA", "Competitive Programming", "Doubt Solving"].map((tech) => (
-              <span
-                key={tech}
-                className="px-3 py-1 bg-primary/10 rounded-full text-sm"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
-      </Card>
-    ),
-  },
-];
+      </div>
+    </Card>
+  ),
+}));
 
 const ExperienceSection = () => {
   return (
@@ -118,7 +49,7 @@ const ExperienceSection = () => {
           subtitle="My professional journey"
           gradient={true}
           align="center"
-          className="mb-12"
+          className="mb-2"
         />
 
         <Timeline data={experienceData} />
@@ -159,7 +90,7 @@ const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         {data.map((item, index) => (
           <div
             key={index}
-            className="flex justify-start pt-10 md:pt-40 md:gap-10"
+            className="flex justify-start pt-5 md:pt-2 md:gap-10"
           >
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
               <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-background flex items-center justify-center">
@@ -169,7 +100,7 @@ const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                 {item.title}
               </h3>
             </div>
-            <div className="relative pl-20 pr-4 md:pl-4 w-full">
+            <div className="relative pl-20 pr-2 md:pr-4 md:pl-4 w-full">
               <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-muted-foreground">
                 {item.title}
               </h3>
