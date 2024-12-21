@@ -65,13 +65,13 @@ export const profiles = [
   },
   {
     platform: "CodeChef",
-    username: "xoxoharsh",
+    username: "xoharshxo",
     stats: [
       { label: "Max Rating", value: "1872" },
       { label: "Level", value: "4 ⭐" },
       { label: "Best Contest Rank", value: "91" },
     ],
-    link: "https://www.codechef.com/users/xoxoharsh",
+    link: "https://www.codechef.com/users/xoharshxo",
     gradient: "from-orange-500 to-orange-600",
     bgGradient: "from-orange-500/20 to-orange-600/20",
   },

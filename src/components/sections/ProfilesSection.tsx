@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { ExternalLink } from "lucide-react";
 import Header from "../ui/Header";
 import { profiles } from "@/config/profile";
+import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 interface Profile {
   platform: string;
@@ -14,18 +15,48 @@ interface Profile {
   bgGradient: string;
 }
 
-const ProfileCard = ({ profile }: { profile: Profile }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
-    className="w-full"
-  >
-    <Card className="p-6 bg-background/50 backdrop-blur-sm border-muted hover:bg-accent/10 transition-colors h-full">
-      <div className="flex flex-col h-full">
+const ProfileCard = ({
+  profile,
+  hoveredIndex,
+  setHoveredIndex,
+  idx,
+}: {
+  profile: Profile;
+  hoveredIndex: number | null;
+  setHoveredIndex: (index: number | null) => void;
+  idx: number;
+}) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="relative group block p-2 h-full w-full"
+      onMouseEnter={() => setHoveredIndex(idx)}
+      onMouseLeave={() => setHoveredIndex(null)}
+    >
+      <AnimatePresence>
+        {hoveredIndex === idx && (
+          <motion.span
+            className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block  rounded-3xl z-0"
+            layoutId="hoverBackground"
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: { duration: 0.15 },
+            }}
+            exit={{
+              opacity: 0,
+              transition: { duration: 0.15, delay: 0.2 },
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      <div className="flex flex-col h-full bg-black border:slate-900 p-4 rounded-3xl relative z-10 shadow-lg shadow-slate-500/20 ring-1 ring-slate-700/50">
         <div
-          className={`bg-gradient-to-r ${profile.bgGradient} p-4 rounded-lg mb-4`}
+          className={`bg-gradient-to-r ${profile.bgGradient} p-4 rounded-lg mb-4 text-center`}
         >
           <h3
             className={`text-2xl font-bold bg-gradient-to-r ${profile.gradient} bg-clip-text text-transparent`}
@@ -44,7 +75,7 @@ const ProfileCard = ({ profile }: { profile: Profile }) => (
                 profile.stats.length % 2 !== 0
                   ? "col-span-2"
                   : ""
-              }`}
+              } flex flex-col space-y-1 text-center`}
             >
               <p className="text-sm text-muted-foreground">{stat.label}</p>
               <p className="text-xl font-semibold">{stat.value}</p>
@@ -55,39 +86,38 @@ const ProfileCard = ({ profile }: { profile: Profile }) => (
         <Button
           variant="outline"
           onClick={() => window.open(profile.link, "_blank")}
-          className="w-full mt-auto"
+          className="w-full mt-auto z-0"
         >
           View Profile
           <ExternalLink className="w-4 h-4 ml-2" />
         </Button>
       </div>
-    </Card>
-  </motion.div>
-);
+    </motion.div>
+  );
+};
 
 const ProfilesSection = () => {
+  let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   return (
     <section id="profiles" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        {/* <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-500 mb-4">
-            Coding Profiles
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            Check out my presence across different platforms
-          </p>
-        </div> */}
         <Header
           title="Coding Profiles"
           subtitle="Check out my presence across different platforms"
           gradient={true}
           align="center"
-          className="mb-2"
+          className="mb-3"
         />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 max-w-6xl mx-auto">
-          {profiles.map((profile) => (
-            <ProfileCard key={profile.platform} profile={profile} />
+          {profiles.map((profile, idx) => (
+            <ProfileCard
+              key={profile.platform}
+              profile={profile}
+              hoveredIndex={hoveredIndex}
+              setHoveredIndex={setHoveredIndex}
+              idx={idx}
+            />
           ))}
         </div>
 
