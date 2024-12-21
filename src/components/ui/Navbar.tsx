@@ -11,7 +11,6 @@ const navItems = [
   { name: "Contact", href: "#contact" },
 ];
 
-// Animation variants for menu icon
 const menuIconVariants = {
   closed: { rotate: 0 },
   opened: { rotate: 90 },
@@ -64,7 +63,7 @@ const Navbar = () => {
                 </span>
               </motion.div>
 
-              {/* Desktop Navigation - Updated font size */}
+              {/* Desktop Navigation */}
               <div className="hidden md:block">
                 <div className="flex items-center space-x-8">
                   {navItems.map((item) => (
@@ -77,26 +76,36 @@ const Navbar = () => {
                       <motion.a
                         href={item.href}
                         className="relative text-foreground/80 hover:text-foreground text-lg font-medium py-2"
-                        whileHover={{ y: -2 }}
+                        animate={{
+                          scale: hoveredItem === item.name ? 1.1 : 1,
+                          opacity:
+                            hoveredItem === null || hoveredItem === item.name
+                              ? 1
+                              : 0.5,
+                        }}
                         transition={{ duration: 0.2 }}
                       >
                         {item.name}
                         <motion.div
-                          className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-gradient-to-r from-red-700 via-red-500 to-orange-500"
+                          className="absolute -bottom-0.5 left-1/2 right-1/2 h-[2px] bg-gradient-to-r from-red-700 via-red-500 to-orange-500"
                           initial={{ scaleX: 0 }}
                           animate={{
                             scaleX: hoveredItem === item.name ? 1 : 0,
-                            transition: { duration: 0.2 },
+                            x: "-50%",
+                            width: "100%",
                           }}
-                          style={{ originX: 0 }}
+                          transition={{ duration: 0.2 }}
+                          style={{ transformOrigin: "center" }}
                         />
                         {/* Glow effect */}
                         <motion.div
-                          className="absolute -bottom-1 left-0 right-0 h-[4px] blur-sm bg-gradient-to-r from-blue-600 via-indigo-600 to-red-600 opacity-0"
+                          className="absolute -bottom-1 left-1/2 right-1/2 h-[4px] blur-sm bg-gradient-to-r from-blue-600 via-indigo-600 to-red-600"
                           animate={{
                             opacity: hoveredItem === item.name ? 0.5 : 0,
-                            transition: { duration: 0.2 },
+                            x: "-50%",
+                            width: "100%",
                           }}
+                          transition={{ duration: 0.2 }}
                         />
                       </motion.a>
                     </motion.div>
@@ -104,7 +113,7 @@ const Navbar = () => {
                 </div>
               </div>
 
-              {/* Animated Mobile menu button */}
+              {/* Mobile menu button */}
               <motion.div
                 className="md:hidden"
                 initial="closed"
@@ -147,7 +156,7 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile menu overlay - kept the same */}
+      {/* Mobile menu overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -185,20 +194,24 @@ const Navbar = () => {
                     >
                       {item.name}
                       <motion.div
-                        className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-600 via-indigo-600 to-red-600"
+                        className="absolute -bottom-1 left-1/2 right-1/2 h-[2px] bg-gradient-to-r from-blue-600 via-indigo-600 to-red-600"
                         initial={{ scaleX: 0 }}
                         animate={{
                           scaleX: hoveredItem === item.name ? 1 : 0,
-                          transition: { duration: 0.2 },
+                          x: "-50%",
+                          width: "100%",
                         }}
-                        style={{ originX: 0 }}
+                        transition={{ duration: 0.2 }}
+                        style={{ transformOrigin: "center" }}
                       />
                       <motion.div
-                        className="absolute -bottom-2 left-0 right-0 h-[4px] blur-sm bg-gradient-to-r from-blue-600 via-indigo-600 to-red-600 opacity-0"
+                        className="absolute -bottom-2 left-1/2 right-1/2 h-[4px] blur-sm bg-gradient-to-r from-blue-600 via-indigo-600 to-red-600"
                         animate={{
                           opacity: hoveredItem === item.name ? 0.5 : 0,
-                          transition: { duration: 0.2 },
+                          x: "-50%",
+                          width: "100%",
                         }}
+                        transition={{ duration: 0.2 }}
                       />
                     </motion.a>
                   </motion.div>
