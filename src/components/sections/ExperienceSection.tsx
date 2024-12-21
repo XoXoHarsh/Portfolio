@@ -1,11 +1,22 @@
+import Header from "@/components/ui/Header";
+
 const ExperienceSection = () => {
   return (
     <section
       id="experience"
-      className="min-h-screen flex items-center justify-center bg-background"
+      className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-background/50"
     >
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold">Experience Section</h2>
+      <div className="max-w-4xl mx-auto">
+        <Header
+          title="Experience"
+          subtitle="My professional journey"
+          gradient={true}
+          align="center"
+          as="h2"
+          className="mb-2"
+        />
+
+        {/* Rest of your experience section content */}
       </div>
     </section>
   );

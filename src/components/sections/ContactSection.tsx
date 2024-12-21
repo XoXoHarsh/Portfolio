@@ -1,11 +1,22 @@
+import Header from "@/components/ui/Header";
+
 const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="min-h-screen flex items-center justify-center bg-background/50"
+      className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-background/50"
     >
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold">Contact Section</h2>
+      <div className="max-w-4xl mx-auto">
+        <Header
+          title="Get In Touch"
+          subtitle="Let's create something amazing together"
+          gradient={true}
+          align="center"
+          as="h2"
+          className="mb-2"
+        />
+
+        {/* Rest of your contact section content */}
       </div>
     </section>
   );

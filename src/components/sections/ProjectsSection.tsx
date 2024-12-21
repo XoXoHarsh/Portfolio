@@ -1,11 +1,19 @@
+import Header from "@/components/ui/Header";
+
 const ProjectsSection = () => {
   return (
-    <section
-      id="projects"
-      className="min-h-screen flex items-center justify-center bg-background"
-    >
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold">Projects Section</h2>
+    <section id="projects" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        <Header
+          title="Featured Projects"
+          subtitle="Some things I've built"
+          gradient={true}
+          align="center"
+          as="h2"
+          className="mb-2"
+        />
+
+        {/* Rest of your projects section content */}
       </div>
     </section>
   );
