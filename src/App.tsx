@@ -10,6 +10,7 @@ import ContactSection from "./components/sections/ContactSection";
 import useActiveSection from "./hooks/useActiveSection";
 import { Toaster } from "./components/ui/toaster";
 import "./app.css";
+import Footer from "./components/ui/Footer";
 
 const App = () => {
   const activeSection = useActiveSection();
@@ -31,6 +32,7 @@ const App = () => {
         <ProjectsSection />
         <ContactSection />
       </main>
+      <Footer />
     </div>
   );
 };
