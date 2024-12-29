@@ -267,7 +267,8 @@ const ContactSection = () => {
                     variant="outline"
                     className="w-full h-32 flex-col gap-4 group relative overflow-hidden bg-background/50 hover:border-emerald-500/50 hover:bg-gradient-to-br hover:from-emerald-950/50 hover:via-emerald-900/50 hover:to-teal-900/50"
                     onClick={() =>
-                      (window.location.href = "mailto:your@email.com")
+                      (window.location.href =
+                        "mailto:harshsharma20503@gmail.com")
                     }
                   >
                     <div className="relative z-10 flex flex-col items-center gap-3">

@@ -24,7 +24,7 @@ export interface Interest {
 }
 
 export const introduction = {
-  personal: `About 22 years of age, Currently in final semester of B-Tech in CSE. Love to play outdoor sports. Challenge me anytime. Interested to meet smart people and learn a lot from them meanwhile sharing my knowledge to get a better understanding of what I know and also to flex :).`,
+  personal: `I’m 22 years old, currently in my final semester of B.Tech in CSE. I enjoy outdoor sports and am always up for a good challenge. I love meeting smart people, learning from them, and sharing my knowledge to grow together.`,
 };
 
 export const techStack: TechStack[] = [

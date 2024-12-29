@@ -82,24 +82,44 @@ const AboutSection = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h3 className="text-2xl font-semibold text-center">
+              <h3 className="text-2xl font-semibold text-center text-gray-100">
                 Technical Interests
               </h3>
               <div className="grid gap-4 h-full flex-1 justify-center">
-                {technicalInterests.map((interest) => (
+                {technicalInterests.map((interest, index) => (
                   <Card
                     key={interest.title}
-                    className="flex p-4 bg-background/50 backdrop-blur-sm border-muted hover:bg-accent/10 transition-colors"
+                    className={`flex p-4 backdrop-blur-sm border-none hover:scale-[1.02] transition-all duration-300 ${
+                      [
+                        // Deep, rich dark variants with subtle gradient
+                        "bg-gradient-to-br from-indigo-900/60 to-purple-950/40 shadow-xl",
+                        "bg-gradient-to-br from-emerald-900/60 to-teal-950/40 shadow-xl",
+                        "bg-gradient-to-br from-rose-900/60 to-pink-950/40 shadow-xl",
+                        "bg-gradient-to-br from-amber-900/60 to-orange-950/40 shadow-xl",
+                        "bg-gradient-to-br from-cyan-900/60 to-blue-950/40 shadow-xl",
+                      ][index % 5]
+                    }`}
                   >
                     <div className="flex items-center space-x-4">
-                      <div className="p-2 bg-primary/10 rounded-xl">
-                        <interest.icon className="w-6 h-6" />
+                      <div
+                        className={`p-2 rounded-xl ${
+                          [
+                            // Matching accent colors with lower opacity
+                            "bg-indigo-500/20 ring-1 ring-indigo-500/30",
+                            "bg-emerald-500/20 ring-1 ring-emerald-500/30",
+                            "bg-rose-500/20 ring-1 ring-rose-500/30",
+                            "bg-amber-500/20 ring-1 ring-amber-500/30",
+                            "bg-cyan-500/20 ring-1 ring-cyan-500/30",
+                          ][index % 5]
+                        }`}
+                      >
+                        <interest.icon className="w-6 h-6 text-white opacity-80" />
                       </div>
                       <div>
-                        <h4 className="text-lg font-medium mb-1">
+                        <h4 className="text-lg font-medium mb-1 text-gray-100">
                           {interest.title}
                         </h4>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-gray-400">
                           {interest.description}
                         </p>
                       </div>
@@ -162,20 +182,38 @@ const AboutSection = () => {
               Non-Technical Interests
             </h3>
             <div className="grid sm:grid-cols-3 lg:grid-cols-5 gap-6">
-              {nonTechnicalInterests.map((interest) => (
+              {nonTechnicalInterests.map((interest, index) => (
                 <Card
                   key={interest.title}
-                  className="p-6 bg-background/50 backdrop-blur-sm border-muted hover:bg-accent/10 transition-colors"
+                  className={`p-6 backdrop-blur-sm border-none hover:scale-105 transition-all duration-300 ${
+                    [
+                      "bg-gradient-to-br from-red-900/50 to-orange-800/30",
+                      "bg-gradient-to-br from-blue-900/50 to-indigo-800/30",
+                      "bg-gradient-to-br from-emerald-900/50 to-teal-800/30",
+                      "bg-gradient-to-br from-purple-900/50 to-pink-800/30",
+                      "bg-gradient-to-br from-cyan-900/50 to-sky-800/30",
+                    ][index % 5]
+                  }`}
                 >
                   <div className="flex flex-col items-center text-center space-y-4">
-                    <div className="p-2 bg-primary/10 rounded-xl">
+                    <div
+                      className={`p-2 rounded-xl ${
+                        [
+                          "bg-red-500/20",
+                          "bg-blue-500/20",
+                          "bg-emerald-500/20",
+                          "bg-purple-500/20",
+                          "bg-cyan-500/20",
+                        ][index % 5]
+                      }`}
+                    >
                       <interest.icon className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-medium mb-1">
+                      <h4 className="text-lg font-medium mb-1 text-white">
                         {interest.title}
                       </h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-gray-300">
                         {interest.description}
                       </p>
                     </div>

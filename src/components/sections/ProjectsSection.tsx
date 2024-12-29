@@ -16,7 +16,7 @@ const ProjectsSection = () => {
           subtitle="Some things I've built"
           gradient={true}
           align="center"
-          className="mb-12"
+          className="mb-2"
         />
 
         {/* Projects Grid with Carousels */}
@@ -35,7 +35,7 @@ const ProjectsSection = () => {
               speed={
                 typeof window !== "undefined" && window.innerWidth < 640
                   ? 50
-                  : 20
+                  : 50
               }
             />
           </div>
@@ -48,7 +48,7 @@ const ProjectsSection = () => {
               speed={
                 typeof window !== "undefined" && window.innerWidth < 640
                   ? 50
-                  : 20
+                  : 50
               }
             />
           </div>

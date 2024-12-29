@@ -3,17 +3,17 @@ import { Github, Linkedin, Instagram } from "lucide-react";
 export const socials = [
   {
     name: "GitHub",
-    url: "YOUR_GITHUB_URL",
+    url: "https://github.com/HarshSharma20503/",
     icon: Github,
   },
   {
     name: "LinkedIn",
-    url: "YOUR_LINKEDIN_URL",
+    url: "https://www.linkedin.com/in/harshsharma20503/",
     icon: Linkedin,
   },
   {
     name: "Instagram",
-    url: "YOUR_INSTAGRAM_URL",
+    url: "https://www.instagram.com/_xoxoharsh_/",
     icon: Instagram,
   },
 ];

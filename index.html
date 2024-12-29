@@ -1,11 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+    <!-- Primary Meta Tags -->
+    <title>Harsh Sharma</title>
+    <meta name="title" content="Harsh Sharma" />
+    <meta
+      name="description"
+      content="Upcoming Software Engineer at Google with expertise in MERN Stack, Web Development and Problem Solving."
+    />
+    <meta
+      name="keywords"
+      content="Harsh Sharma, Web Developer, MERN Stack, Full Stack Developer, Google, Portfolio"
+    />
+    <meta name="author" content="Harsh Sharma" />
+
+    <!-- Viewport and Theme -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://xoxoharsh.in" />
+    <meta property="og:title" content="Harsh Sharma" />
+    <meta
+      property="og:description"
+      content="Upcoming Software Engineer at Google with expertise in MERN Stack, Web Development and Problem Solving."
+    />
+    <meta property="og:image" content="/preview.webp" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="/preview.webp" />
+    <meta property="twitter:url" content="https://xoxoharsh.in" />
+    <meta property="twitter:title" content="Harsh Sharma" />
+    <meta
+      property="twitter:description"
+      content="Upcoming Software Engineer at Google with expertise in MERN Stack, Web Development and Problem Solving."
+    />
+    <meta property="twitter:image" content="/preview.webp" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-32x32.png" />
+
+    <!-- Additional Meta Tags -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
   </head>
+  <!-- Prevent Flash of Unstyled Content for Dark Theme -->
+  <script>
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    }
+  </script>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
