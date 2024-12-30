@@ -4,7 +4,7 @@ export const profiles = [
     username: "XoXoHarsh",
     stats: [
       { label: "Max Rating", value: "1,962" },
-      { label: "Problems Solved", value: "692" },
+      { label: "Problems Solved", value: "690+" },
       { label: "Level", value: "Knight" },
       { label: "Contests", value: "35+" },
     ],
@@ -18,7 +18,7 @@ export const profiles = [
     stats: [
       { label: "Contributions", value: "1,300+" },
       { label: "Repositories", value: "51" },
-      { label: "Profile Views", value: "3,500+" },
+      { label: "Profile Views", value: "4,000+" },
       { label: "Followers", value: "29" },
     ],
     link: "https://github.com/HarshSharma20503",

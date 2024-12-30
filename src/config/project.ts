@@ -32,7 +32,8 @@ export const projects = [
       "SkillSwap is a MERN stack platform enabling collaborative learning through peer-to-peer guidance, emphasizing knowledge exchange, security, and user-friendly design.",
     image: "/images/projects/skillswap.webp",
     githubLink: "https://github.com/HarshSharma20503/SkillSwap",
-    demoLink: "https://demo.com",
+    demoLink:
+      "https://github.com/HarshSharma20503/SkillSwap/blob/main/screenshots/profile-page.png",
     tags: ["MERN", "Socket.io", "React-Bootstrap"],
   },
   {

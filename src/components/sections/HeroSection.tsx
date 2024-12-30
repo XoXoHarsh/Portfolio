@@ -142,7 +142,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               className="bg-gradient-to-r from-red-700 via-red-500 to-orange-500 hover:opacity-90 transition-opacity text-lg sm:text-xl px-6 sm:px-8 py-4 sm:py-6 text-foreground"
-              onClick={() => window.open("/path-to-your-resume.pdf", "_blank")}
+              onClick={() => window.open("/resume.pdf", "_blank")}
             >
               <FileDown className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
               Download Resume
@@ -155,7 +155,7 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="absolute bottom-1 left-1/2 -translate-x-1/2"
         >
           <motion.div
             animate={{
