@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Header from "@/components/ui/Header";
 import ProjectCarousel from "@/components/ui/ProjectCarousel";
 import { projects } from "@/config/project";
+import { trackExternalLink } from "@/utils/analytics";
 
 const ProjectsSection = () => {
   // Split projects into two groups
@@ -67,6 +68,12 @@ const ProjectsSection = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-red-700 via-red-500 to-orange-500 text-white font-medium hover:opacity-90 transition-opacity"
+            onClick={() =>
+              trackExternalLink(
+                "https://github.com/XoXoHarsh",
+                "View All Projects - GitHub"
+              )
+            }
           >
             View All Projects
           </a>

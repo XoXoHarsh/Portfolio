@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink } from "lucide-react";
 import AutoScrollCarousel from "./AutoScrollCarousel";
+import { trackExternalLink } from "@/utils/analytics";
 
 interface Project {
   title: string;
@@ -19,6 +20,16 @@ interface ProjectCarouselProps {
 }
 
 const ProjectCard = ({ project }: { project: Project }) => {
+  const handleDemoClick = () => {
+    trackExternalLink(project.demoLink, "Project Demo View");
+    window.open(project.demoLink, "_blank");
+  };
+
+  const handleCodeClick = () => {
+    trackExternalLink(project.githubLink, "Project Code View");
+    window.open(project.githubLink, "_blank");
+  };
+
   return (
     <div className="flex-none px-2 w-[260px] xs:w-[300px] sm:w-[320px] md:w-[360px]">
       <Card className="h-full bg-background/50 backdrop-blur-sm border-muted hover:bg-accent/10 transition-colors overflow-hidden">
@@ -55,7 +66,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               variant="outline"
               size="sm"
               className="flex-1 text-xs"
-              onClick={() => window.open(project.githubLink, "_blank")}
+              onClick={handleCodeClick}
             >
               <Github className="w-3 h-3 mr-1" />
               Code
@@ -63,7 +74,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
             <Button
               size="sm"
               className="flex-1 text-xs bg-gradient-to-r from-red-700 via-red-500 to-orange-500"
-              onClick={() => window.open(project.demoLink, "_blank")}
+              onClick={handleDemoClick}
             >
               <ExternalLink className="w-3 h-3 mr-1" />
               Demo

@@ -15,7 +15,6 @@ export const trackEvent = (
   label?: string,
   value?: number
 ) => {
-  console.log("Tracking event", category, action, label, value);
   ReactGA.event({
     category,
     action,

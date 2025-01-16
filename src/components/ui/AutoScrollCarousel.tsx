@@ -75,9 +75,24 @@ const AutoScrollCarousel = ({
     };
   }, [direction, speed]);
 
-  // Create three sets of children to ensure smooth infinite scroll
   const allChildren = React.Children.toArray(children);
-  const triplicatedChildren = [...allChildren, ...allChildren, ...allChildren];
+  const triplicatedChildren = [
+    ...allChildren.map((child) =>
+      React.cloneElement(child as React.ReactElement, {
+        key: `set1-${(child as React.ReactElement).key}`,
+      })
+    ),
+    ...allChildren.map((child) =>
+      React.cloneElement(child as React.ReactElement, {
+        key: `set2-${(child as React.ReactElement).key}`,
+      })
+    ),
+    ...allChildren.map((child) =>
+      React.cloneElement(child as React.ReactElement, {
+        key: `set3-${(child as React.ReactElement).key}`,
+      })
+    ),
+  ];
 
   return (
     <div

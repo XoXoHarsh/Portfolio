@@ -144,7 +144,6 @@ const ProfilesSection = () => {
   const handleAllProfilesClick = () => {
     // Track Linktree click
     trackExternalLink("https://linktr.ee/xoxoharsh", "All Profiles - Linktree");
-    trackEvent("Profile Interaction", "View All Profiles", "Linktree");
     window.open("https://linktr.ee/xoxoharsh", "_blank");
   };
 
