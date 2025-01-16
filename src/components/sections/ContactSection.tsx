@@ -9,10 +9,15 @@ import { Textarea } from "@/components/ui/textarea";
 import Header from "@/components/ui/Header";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { socials, emailConfig } from "@/config/contact";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Send, MessageSquare } from "lucide-react";
+import {
+  trackEvent,
+  trackFormSubmission,
+  trackSocialInteraction,
+} from "@/utils/analytics";
 
 const schema = yup.object({
   name: yup.string().required("Name is required"),
@@ -32,6 +37,35 @@ const ContactSection = () => {
     resolver: yupResolver(schema),
   });
 
+  // Track section view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            trackEvent(
+              "Section View",
+              "Contact Section",
+              "Viewed Contact Section"
+            );
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    const section = document.getElementById("contact");
+    if (section) {
+      observer.observe(section);
+    }
+
+    return () => {
+      if (section) {
+        observer.unobserve(section);
+      }
+    };
+  }, []);
+
   const onSubmit = async (data: any) => {
     setLoading(true);
     try {
@@ -45,12 +79,17 @@ const ContactSection = () => {
         },
         emailConfig.publicKey
       );
+
+      // Track successful form submission
+      trackFormSubmission("Contact Form", true);
+
       toast({
         title: "Message sent successfully!",
         description: "I'll get back to you soon.",
       });
       reset();
     } catch (error) {
+      trackFormSubmission("Contact Form", false);
       toast({
         title: "Error sending message",
         description: "Please try again later.",
@@ -58,6 +97,16 @@ const ContactSection = () => {
       });
     }
     setLoading(false);
+  };
+
+  const handleSocialClick = (name: string, url: string) => {
+    trackSocialInteraction(name, "click");
+    window.open(url, "_blank");
+  };
+
+  const handleEmailClick = () => {
+    trackEvent("Contact", "Email Click", "Direct Email");
+    window.location.href = "mailto:harshsharma20503@gmail.com";
   };
 
   return (
@@ -228,7 +277,7 @@ const ContactSection = () => {
           "hover:border-pink-500/50 hover:bg-gradient-to-br hover:from-pink-950/50 hover:via-fuchsia-900/50 hover:to-purple-900/50"
         }
       `}
-                      onClick={() => window.open(social.url, "_blank")}
+                      onClick={() => handleSocialClick(social.name, social.url)}
                     >
                       <div className="relative z-10 flex flex-col items-center gap-3">
                         <motion.div
@@ -266,10 +315,7 @@ const ContactSection = () => {
                   <Button
                     variant="outline"
                     className="w-full h-32 flex-col gap-4 group relative overflow-hidden bg-background/50 hover:border-emerald-500/50 hover:bg-gradient-to-br hover:from-emerald-950/50 hover:via-emerald-900/50 hover:to-teal-900/50"
-                    onClick={() =>
-                      (window.location.href =
-                        "mailto:harshsharma20503@gmail.com")
-                    }
+                    onClick={handleEmailClick}
                   >
                     <div className="relative z-10 flex flex-col items-center gap-3">
                       <motion.div

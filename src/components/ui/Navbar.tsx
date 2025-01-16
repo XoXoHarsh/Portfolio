@@ -28,7 +28,7 @@ const Navbar = ({ activeSection }: NavbarProps) => {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    return scrollY.onChange((latest) => {
+    return scrollY.on("change", (latest) => {
       if (latest > lastScrollY && !hidden && latest > 100) {
         setHidden(true);
       } else if (latest < lastScrollY && hidden) {

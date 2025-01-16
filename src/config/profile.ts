@@ -21,7 +21,7 @@ export const profiles = [
       { label: "Profile Views", value: "4,000+" },
       { label: "Followers", value: "29" },
     ],
-    link: "https://github.com/HarshSharma20503",
+    link: "https://github.com/XoXoHarsh",
     gradient: "from-purple-500 to-purple-600",
     bgGradient: "from-purple-500/20 to-purple-600/20",
   },

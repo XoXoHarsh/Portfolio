@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { FileDown, ChevronDown } from "lucide-react";
+import { trackDownload, trackEvent } from "@/utils/analytics";
 
 const roles = [
   "Upcoming SWE @Google",
@@ -41,6 +42,16 @@ const HeroSection = () => {
     timeout = setTimeout(updateText, 100);
     return () => clearTimeout(timeout);
   }, [currentRole, displayText, isDeleting]);
+
+  const handleResumeDownload = () => {
+    trackDownload("Resume");
+    window.open("/resume.pdf", "_blank");
+  };
+
+  const handleScrollDown = () => {
+    trackEvent("Navigation", "Scroll Down", "Hero Section Scroll");
+    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section
@@ -142,7 +153,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               className="bg-gradient-to-r from-red-700 via-red-500 to-orange-500 hover:opacity-90 transition-opacity text-lg sm:text-xl px-6 sm:px-8 py-4 sm:py-6 text-foreground"
-              onClick={() => window.open("/resume.pdf", "_blank")}
+              onClick={handleResumeDownload}
             >
               <FileDown className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
               Download Resume
@@ -168,6 +179,7 @@ const HeroSection = () => {
               ease: "easeInOut",
             }}
             className="flex flex-col items-center space-y-2 text-foreground/60 px-4 py-2 rounded-full backdrop-blur-sm"
+            onClick={handleScrollDown}
           >
             <span className="text-sm sm:text-base font-medium tracking-wider">
               Scroll Down

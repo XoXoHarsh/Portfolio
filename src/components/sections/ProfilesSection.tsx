@@ -4,7 +4,8 @@ import { ExternalLink } from "lucide-react";
 import Header from "../ui/Header";
 import { profiles } from "@/config/profile";
 import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { trackEvent, trackExternalLink } from "@/utils/analytics";
 
 interface Profile {
   platform: string;
@@ -26,6 +27,12 @@ const ProfileCard = ({
   setHoveredIndex: (index: number | null) => void;
   idx: number;
 }) => {
+  const handleProfileClick = () => {
+    // Track profile link click with platform info
+    trackExternalLink(profile.link, `${profile.platform} Profile View`);
+    window.open(profile.link, "_blank");
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -85,7 +92,7 @@ const ProfileCard = ({
 
         <Button
           variant="outline"
-          onClick={() => window.open(profile.link, "_blank")}
+          onClick={handleProfileClick}
           className="w-full mt-auto z-0"
         >
           View Profile
@@ -98,6 +105,49 @@ const ProfileCard = ({
 
 const ProfilesSection = () => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            trackEvent(
+              "Section View",
+              "Profiles Section",
+              "Viewed Profiles Section"
+            );
+            // Track number of profiles displayed
+            trackEvent(
+              "Section Metrics",
+              "Profiles Count",
+              "Total Profiles",
+              profiles.length
+            );
+          }
+        });
+      },
+      { threshold: 0.3 } // Trigger when 30% of section is visible
+    );
+
+    const section = document.getElementById("profiles");
+    if (section) {
+      observer.observe(section);
+    }
+
+    return () => {
+      if (section) {
+        observer.unobserve(section);
+      }
+    };
+  }, []);
+
+  const handleAllProfilesClick = () => {
+    // Track Linktree click
+    trackExternalLink("https://linktr.ee/xoxoharsh", "All Profiles - Linktree");
+    trackEvent("Profile Interaction", "View All Profiles", "Linktree");
+    window.open("https://linktr.ee/xoxoharsh", "_blank");
+  };
+
   return (
     <section id="profiles" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
@@ -125,7 +175,7 @@ const ProfilesSection = () => {
           <Button
             variant="outline"
             size="lg"
-            onClick={() => window.open("https://linktr.ee/xoxoharsh", "_blank")}
+            onClick={handleAllProfilesClick}
             className="bg-gradient-to-r from-red-700 via-red-500 to-orange-500 hover:opacity-90"
           >
             See All Profiles

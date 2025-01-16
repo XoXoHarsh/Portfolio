@@ -63,7 +63,7 @@ const ProjectsSection = () => {
           className="text-center mt-16"
         >
           <a
-            href="https://github.com/harshsharma20503"
+            href="https://github.com/XoXoHarsh"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-red-700 via-red-500 to-orange-500 text-white font-medium hover:opacity-90 transition-opacity"

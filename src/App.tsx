@@ -1,4 +1,3 @@
-// src/App.tsx
 import { useEffect } from "react";
 import Navbar from "./components/ui/Navbar";
 import HeroSection from "./components/sections/HeroSection";
@@ -11,14 +10,20 @@ import useActiveSection from "./hooks/useActiveSection";
 import { Toaster } from "./components/ui/toaster";
 import "./App.css";
 import Footer from "./components/ui/Footer";
+import { initGA, trackPageView, trackSectionView } from "./utils/analytics";
 
 const App = () => {
   const activeSection = useActiveSection();
 
   useEffect(() => {
-    // Set dark mode by default
     document.documentElement.classList.add("dark");
+    initGA();
+    trackPageView(window.location.pathname + window.location.search);
   }, []);
+
+  useEffect(() => {
+    trackSectionView(`#${activeSection}`);
+  }, [activeSection]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
