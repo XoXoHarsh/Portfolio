@@ -9,15 +9,11 @@ import { Textarea } from "@/components/ui/textarea";
 import Header from "@/components/ui/Header";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { socials, emailConfig } from "@/config/contact";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Send, MessageSquare } from "lucide-react";
-import {
-  trackEvent,
-  trackFormSubmission,
-  trackSocialInteraction,
-} from "@/utils/analytics";
+import { trackFormSubmission, trackSocialInteraction } from "@/utils/analytics";
 
 const schema = yup.object({
   name: yup.string().required("Name is required"),
@@ -36,35 +32,6 @@ const ContactSection = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  // Track section view
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            trackEvent(
-              "Section View",
-              "Contact Section",
-              "Viewed Contact Section"
-            );
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    const section = document.getElementById("contact");
-    if (section) {
-      observer.observe(section);
-    }
-
-    return () => {
-      if (section) {
-        observer.unobserve(section);
-      }
-    };
-  }, []);
 
   const onSubmit = async (data: any) => {
     setLoading(true);
@@ -105,7 +72,7 @@ const ContactSection = () => {
   };
 
   const handleEmailClick = () => {
-    trackEvent("Contact", "Email Click", "Direct Email");
+    trackSocialInteraction("Email", "click");
     window.location.href = "mailto:harshsharma20503@gmail.com";
   };
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { FileDown, ChevronDown } from "lucide-react";
-import { trackDownload, trackEvent } from "@/utils/analytics";
+import { trackDownload } from "@/utils/analytics";
 
 const roles = [
   "Upcoming SWE @Google",
@@ -49,7 +49,6 @@ const HeroSection = () => {
   };
 
   const handleScrollDown = () => {
-    trackEvent("Navigation", "Scroll Down", "Hero Section Scroll");
     document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
   };
 

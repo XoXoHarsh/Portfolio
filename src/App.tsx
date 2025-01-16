@@ -10,7 +10,7 @@ import useActiveSection from "./hooks/useActiveSection";
 import { Toaster } from "./components/ui/toaster";
 import "./App.css";
 import Footer from "./components/ui/Footer";
-import { initGA, trackPageView, trackSectionView } from "./utils/analytics";
+import { initGA, trackPageView } from "./utils/analytics";
 
 const App = () => {
   const activeSection = useActiveSection();
@@ -20,10 +20,6 @@ const App = () => {
     initGA();
     trackPageView(window.location.pathname + window.location.search);
   }, []);
-
-  useEffect(() => {
-    trackSectionView(`#${activeSection}`);
-  }, [activeSection]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">

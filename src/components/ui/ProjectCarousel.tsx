@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink } from "lucide-react";
 import AutoScrollCarousel from "./AutoScrollCarousel";
-import { trackExternalLink } from "@/utils/analytics";
+import { trackExternalLinkProjects } from "@/utils/analytics";
 
 interface Project {
   title: string;
@@ -21,12 +21,12 @@ interface ProjectCarouselProps {
 
 const ProjectCard = ({ project }: { project: Project }) => {
   const handleDemoClick = () => {
-    trackExternalLink(project.demoLink, "Project Demo View");
+    trackExternalLinkProjects(project.demoLink, "Project Demo View");
     window.open(project.demoLink, "_blank");
   };
 
   const handleCodeClick = () => {
-    trackExternalLink(project.githubLink, "Project Code View");
+    trackExternalLinkProjects(project.githubLink, "Project Code View");
     window.open(project.githubLink, "_blank");
   };
 

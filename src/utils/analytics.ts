@@ -10,40 +10,47 @@ export const trackPageView = (path: string) => {
 
 // Track button clicks and link clicks
 export const trackEvent = (
-  category: string,
-  action: string,
-  label?: string,
-  value?: number
+  name: string,
+  parameters?: { [key: string]: any }
 ) => {
-  ReactGA.event({
-    category,
-    action,
-    label,
-    value,
-  });
-};
-
-// Custom function to track section visibility
-export const trackSectionView = (sectionName: string) => {
-  trackEvent("Section Visibility", "view", sectionName);
+  ReactGA.event(name, parameters);
 };
 
 // Track external link clicks
-export const trackExternalLink = (url: string, label?: string) => {
-  trackEvent("External Link", "click", label || url);
+export const trackExternalLinkProjects = (url: string, label?: string) => {
+  trackEvent("Projects external_link_click", {
+    link_url: url,
+    link_name: label || url,
+  });
+};
+
+export const trackExternalLinkProfiles = (url: string, label?: string) => {
+  trackEvent("Profiles external_link_click", {
+    link_url: url,
+    link_name: label || url,
+  });
 };
 
 // Track document downloads
 export const trackDownload = (documentName: string) => {
-  trackEvent("Resume Download", "click", documentName);
+  trackEvent("file_download", {
+    file_name: documentName,
+    file_type: documentName.split(".").pop(),
+  });
 };
 
 // Track form submissions
 export const trackFormSubmission = (formName: string, success: boolean) => {
-  trackEvent("Form Submission", success ? "success" : "failure", formName);
+  trackEvent("form_submission", {
+    form_name: formName,
+    success: success,
+  });
 };
 
 // Track social media interactions
 export const trackSocialInteraction = (network: string, action: string) => {
-  trackEvent("Social", action, network);
+  trackEvent("social_interaction", {
+    network: network,
+    action: action,
+  });
 };

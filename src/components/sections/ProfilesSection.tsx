@@ -4,8 +4,8 @@ import { ExternalLink } from "lucide-react";
 import Header from "../ui/Header";
 import { profiles } from "@/config/profile";
 import { AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
-import { trackEvent, trackExternalLink } from "@/utils/analytics";
+import { useState } from "react";
+import { trackExternalLinkProfiles } from "@/utils/analytics";
 
 interface Profile {
   platform: string;
@@ -29,7 +29,7 @@ const ProfileCard = ({
 }) => {
   const handleProfileClick = () => {
     // Track profile link click with platform info
-    trackExternalLink(profile.link, `${profile.platform} Profile View`);
+    trackExternalLinkProfiles(profile.link, `${profile.platform} Profile View`);
     window.open(profile.link, "_blank");
   };
 
@@ -106,44 +106,12 @@ const ProfileCard = ({
 const ProfilesSection = () => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            trackEvent(
-              "Section View",
-              "Profiles Section",
-              "Viewed Profiles Section"
-            );
-            // Track number of profiles displayed
-            trackEvent(
-              "Section Metrics",
-              "Profiles Count",
-              "Total Profiles",
-              profiles.length
-            );
-          }
-        });
-      },
-      { threshold: 0.3 } // Trigger when 30% of section is visible
-    );
-
-    const section = document.getElementById("profiles");
-    if (section) {
-      observer.observe(section);
-    }
-
-    return () => {
-      if (section) {
-        observer.unobserve(section);
-      }
-    };
-  }, []);
-
   const handleAllProfilesClick = () => {
     // Track Linktree click
-    trackExternalLink("https://linktr.ee/xoxoharsh", "All Profiles - Linktree");
+    trackExternalLinkProfiles(
+      "https://linktr.ee/xoxoharsh",
+      "All Profiles - Linktree"
+    );
     window.open("https://linktr.ee/xoxoharsh", "_blank");
   };
 
